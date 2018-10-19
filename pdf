@@ -1,0 +1,93 @@
+2  Requirements
+Please complete the following:
+1.  Create a new project called Lab 5
+
+2.  You  must  create  an  interface  called  operation.   Recall  that  there  is  not
+really  such  a  thing  as  an  interface  in  C++  like  Java.   We  must  use  an
+abstract class, i.e., a class with one more more purely virtual functions.
+In C++, we say an abstract class is an interface if it contains nothing but
+purely virtual methods:
+
+(a)  Create  a  new  header  file  called  operation.hpp.   operation  does  not
+need a cpp file.
+
+(b)  operation’s members are all public.
+
+(c)  Declare a purely virtual member function called get code that accepts
+no parameter and returns a char.
+
+(d)  Declare a purely virtual member function called perform that accepts
+two ints and returns an int.
+
+(e)  Declare a virtual destructor called  ̃operation, and provide an inline
+empty implementation.
+
+3.  You  must  create  an  abstract  class  called  abstract operation that implements our operation interface:
+(a)  Create  a  new  header  file  called  abstract operation.hpp. The abstract
+operation class can go in this file, it does not need a cpp file.
+(b)  abstract operation contains a single private data member called operation
+type which is a char.
+(c)  Declare and define a one-parameter constructor which accepts a char
+representing a mathematical operation and assigns it to operation type.
+(d)  Implement the get code member function so that it returns operation type.
+(e)  Declare a virtual destructor called  ̃abstract operation, and provide an inline empty implementation.
+
+4.  You must create four classes that extend abstract operation:
+
+(a)  Each class must be implemented in its own header file.  There is no need for a cpp file.
+
+(b)  Define an addition operation class, a subtraction operation class, a multiplication
+operation class, and a division operation class.
+
+(c)  Provide  each  class  with  a  public  static  constant  char  called  operation
+CODE where operation is the operation, and assign the correct value,  i.e.,  +,  -,  *,  or /.
+For example,  the addition operation class will contain a constant celled ADDITION CODE and with the value’+’.
+(d)  Implement a zero-parameter constructor which passes the value stored in the static constant to the base class’
+one-parameter constructor.
+(e)  Implement the perform member function (this should be a single line) by performing the operation
+using the correct operator and returning the result.
+(f)  Declare a virtual destructor, and provide an inline empty implementation.
+
+5.  You must create a class called rpn calculator:
+(a)  Declare the class in a header file called rpn calculator.
+(b)  Remember to include the other header files at the top of this class (which can you omit?)
+(c)  Declare two private data members
+i.  an int called result
+ii.  an std::stack that contains ints.  You will declare a variable of type std::stack<int>.
+(d)  Define a private member function called operation type.  This member  function  should  accept
+an  int  (or  char)  called  operation,  and return a pointer to an operation.  Inside the function, use a switch
+statement  to  examine  the  parameter.   If  it  is  a  plus  sign,  return  a pointer to a new addition operation.
+If the operation is a minus sign, return  a  pointer  to  a  new  subtraction operation. And so on. Use
+the public constants from the respective operation implementations
+instead of literals in this function.
+(e)  Define a private member function called perform.  This member func-
+tion should accept a parameter which is a pointer to an operation.
+The member function should return void.  It must pop the top two
+numbers from the stack, apply the operation (use polymorphism, and
+make sure the operands are in the correct order!)  and then push the
+result back on the stack.
+(f)  Here’s the fun part.  Define and implement a public member function
+called process
+form:
+    i.  This function must accept a string called formula as its parame-
+    ter, and return an int which is the final solution to the equation
+    in the formula passed.
+
+    ii.  This function must read the formula from left to right.  Integers
+    in the formula must be pushed to the stack.  When an operation
+    is encountered, the top two operands must be removed from the
+    stack and used with the operator.  The result must be pushed
+    back on the stack.  When we get to the end of the formula, we
+    can return the final value.
+
+    iii.  An interesting and straight-forward algorithm follows.  Create a
+    local istringstream object called iss, passing the formula string
+    to the iss constructor.  ‘While’ we can loop and use the extrac-
+    tion  operator  on  iss  to  extract  a  second  string  called  operand,
+    take  operand  and  pass  it  as  the  parameter  to  a  second  nested
+    istringstream object called iss2.  Try to extract an integer from
+    iss2.  If we can, push the integer on the stack.  If not, we must
+    have  hit  an  operation,  so  we  can  simply  extract  the  first  char
+    from  the  second  string  (operand)  and  use  it  as  our  operation.
+    This code snippet may help:
+    perform(operation_type(operand[0]));
