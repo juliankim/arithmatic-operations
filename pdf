@@ -42,10 +42,13 @@ operation class, and a division operation class.
 (c)  Provide  each  class  with  a  public  static  constant  char  called  operation
 CODE where operation is the operation, and assign the correct value,  i.e.,  +,  -,  *,  or /.
 For example,  the addition operation class will contain a constant celled ADDITION CODE and with the value’+’.
+
 (d)  Implement a zero-parameter constructor which passes the value stored in the static constant to the base class’
 one-parameter constructor.
+
 (e)  Implement the perform member function (this should be a single line) by performing the operation
 using the correct operator and returning the result.
+
 (f)  Declare a virtual destructor, and provide an inline empty implementation.
 
 5.  You must create a class called rpn calculator:

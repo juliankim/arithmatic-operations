@@ -5,4 +5,9 @@
 #ifndef LAB_05_SUBTRACT_HPP
 #define LAB_05_SUBTRACT_HPP
 
+class subtract {
+    public:
+        static const char - = '-';
+};
+
 #endif //LAB_05_SUBTRACT_HPP
