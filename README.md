@@ -1,3 +1,3 @@
 # Arithmatic Operations
 
-### This project to demonstrate abstract/overriding operators and implementing simple mathamatical functions.
+### This project demonstrates abstract/overriding operators and implements simple mathamatical functions.
